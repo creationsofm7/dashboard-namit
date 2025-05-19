@@ -99,10 +99,8 @@ export default function SensorConnect({ onConnect, customerData }: SensorConnect
         )
 
         const device = await navigator.bluetooth.requestDevice({
-          filters: [{ name: "ArduinoIMU" }],
-          // Alternatively, if your device advertises the service UUID:
-          // filters: [{ services: [SERVICE_UUID] }],
-          optionalServices: [SERVICE_UUID],
+          filters: [{ services: [SERVICE_UUID] }], // Filter by service UUID
+          optionalServices: [SERVICE_UUID], // Ensure service is accessible
         })
 
         if (!device.gatt) {
@@ -266,4 +264,3 @@ export default function SensorConnect({ onConnect, customerData }: SensorConnect
     </div>
   )
 }
-
